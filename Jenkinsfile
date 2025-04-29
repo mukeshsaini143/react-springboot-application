@@ -1,28 +1,24 @@
 pipeline {
     agent any
-
     environment {
-        DOCKER_CREDENTIALS_ID = 'Docker-creds'
+        DOCKER_CREDENTIALS_ID = 'Docker-Creds'
         FRONTEND_IMAGE = 'mukeshsaini7/bedsheet-frontend'
         BACKEND_IMAGE = 'mukeshsaini7/bedsheet-backend'
     }
-
     stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/mukeshsaini143/react-springboot-application.git'
-            }
-        }
-
         stage('Build Frontend') {
             steps {
                 dir('frontend/bedsheet-shop-frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    sh '''
+                        rm -rf node_modules package-lock.json
+                        npm cache clean --force
+                        npm install
+                        npm install axios
+                        npm run build
+                    '''
                 }
             }
         }
-
         stage('Build Backend') {
             steps {
                 dir('backend/product-service') {
@@ -30,16 +26,14 @@ pipeline {
                 }
             }
         }
-
         stage('Build Docker Images') {
             steps {
                 script {
                     docker.build("${FRONTEND_IMAGE}:latest", "frontend/bedsheet-shop-frontend")
-                    docker.build("${BACKEND_IMAGE}:latest", "backend/bedsheet-shop-backend")
+                    docker.build("${BACKEND_IMAGE}:latest", "backend/product-service")
                 }
             }
         }
-
         stage('Push Docker Images') {
             steps {
                 script {
@@ -51,7 +45,6 @@ pipeline {
             }
         }
     }
-
     post {
         success {
             echo '✅ Pipeline completed successfully!'
