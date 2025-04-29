@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_CREDENTIALS_ID = 'Docker-creds'
+        DOCKER_CREDENTIALS_ID = 'Docker-Creds'
         FRONTEND_IMAGE = 'mukeshsaini7/bedsheet-frontend'
         BACKEND_IMAGE = 'mukeshsaini7/bedsheet-backend'
     }
