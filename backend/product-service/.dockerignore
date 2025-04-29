@@ -1,3 +1,4 @@
+../.vscode
 target
 .git
 .gitignore
@@ -7,3 +8,4 @@ Dockerfile
 *.iml
 .idea
 *.md
+.DS_Store
