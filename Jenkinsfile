@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Frontend') {
             steps {
-                dir('frontend/bedsheet-shop-frontend') {
+                dir('react-springboot-application/frontend/bedsheet-shop-frontend') {
                     sh '''
                         rm -rf node_modules package-lock.json
                         npm cache clean --force
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Build Backend') {
             steps {
-                dir('backend/product-service') {
+                dir('react-springboot-application/backend/product-service') {
                     sh 'mvn clean package -DskipTests'
                 }
             }
@@ -34,8 +34,8 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    docker.build("${FRONTEND_IMAGE}:latest", "frontend/bedsheet-shop-frontend")
-                    docker.build("${BACKEND_IMAGE}:latest", "backend/product-service")
+                    docker.build("${FRONTEND_IMAGE}:latest", "react-springboot-application/frontend/bedsheet-shop-frontend")
+                    docker.build("${BACKEND_IMAGE}:latest", "react-springboot-application/backend/product-service")
                 }
             }
         }
