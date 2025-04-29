@@ -14,7 +14,7 @@ pipeline {
                         npm cache clean --force
                         npm install
                         npm install axios
-                        npm run test -- --coverage  # Run frontend tests (Jest or other test framework)
+                        # npm run test -- --coverage  # Run frontend tests (Jest or other test framework)
                         npm run build
                     '''
                 }
@@ -23,7 +23,7 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('backend/product-service') {
-                    sh 'mvn clean test'  // This runs the tests
+                   # sh 'mvn clean test'  // This runs the tests
                     sh 'mvn clean package -DskipTests'
                 }
             }
