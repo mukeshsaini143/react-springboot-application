@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     docker.build("${FRONTEND_IMAGE}:latest", "frontend/bedsheet-shop-frontend")
-                    docker.build("${BACKEND_IMAGE}:latest", "backend/bedsheet-shop-backend")
+                    docker.build("${BACKEND_IMAGE}:latest", "backend/product-service")
                 }
             }
         }
