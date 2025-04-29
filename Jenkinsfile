@@ -10,8 +10,10 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/mukeshsaini143/react-springboot-application.git'
-            }
+                git branch: 'main', url: 'https://github.com/mukeshsaini143/react-springboot-application.git'
+                 }
+           }
+
         }
 
         stage('Build Frontend') {
