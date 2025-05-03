@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-# Use the official OpenJDK 17 base image
-FROM openjdk:17-jdk-slim AS builder
-=======
 # Stage 1: Build
 FROM eclipse-temurin:17-jdk-alpine as builder
->>>>>>> 1699e260808ca95a6d4a481c3912aec942d5f6ba
 
 WORKDIR /app
 
